@@ -14,12 +14,14 @@ public class cannon : MonoBehaviour {
 	private float BPM = 0f;
 	public float volume_ratio = 0;
 	private float rate;
+  private GameObject levelObject;
+  private gameLevel level;
 
 	void Start () 
-	{
+  {
 		fx = GetComponent<AudioSource>();
-    GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
-    gameLevel level = levelObject.GetComponent<gameLevel>();
+    levelObject = GameObject.FindGameObjectWithTag("Level");
+    level = levelObject.GetComponent<gameLevel>();
     BPM = level.BPM;
     rate = (60 / BPM) * divisor;
     InvokeRepeating ("Fire", 0f, rate);
