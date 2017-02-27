@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gameLevel : MonoBehaviour {
-  private AudioSource music;
-  public float BPM;
-  public float Beat { get; private set; }
+	public AudioSource music{ get; private set; }
+  	public float BPM;
+  	public float Beat { get; private set; }
 	// Use this for initialization 
 	void Start () {
     this.music = GetComponent<AudioSource>();

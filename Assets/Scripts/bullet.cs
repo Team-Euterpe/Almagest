@@ -8,6 +8,7 @@ public class bullet : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Player")) 
 		{
+			GameObject.FindGameObjectWithTag("Player").GetComponent<gameOver>().GameOver();
 			other.gameObject.SetActive (false);
 		}
 	}
