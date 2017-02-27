@@ -9,6 +9,7 @@ public class cannon : MonoBehaviour {
 	private GameObject player;
 	private AudioSource fx;
 	public float time = 0f;
+  public float divisor = 1f;
 	public float force = 0f;
 	private float BPM = 0f;
 	public float volume_ratio = 0;
@@ -20,7 +21,7 @@ public class cannon : MonoBehaviour {
     GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
     gameLevel level = levelObject.GetComponent<gameLevel>();
     BPM = level.BPM;
-    rate = 60 / BPM;
+    rate = (60 / BPM) * divisor;
     InvokeRepeating ("Fire", 0f, rate);
 	}
 	void Update ()
