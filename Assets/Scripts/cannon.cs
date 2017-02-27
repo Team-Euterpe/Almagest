@@ -19,6 +19,7 @@ public class cannon : MonoBehaviour
     fx = GetComponent<AudioSource>();
     player = GameObject.FindGameObjectWithTag("Player");
     InvokeRepeating("Fire", 0f, bo.rate);
+    Debug.Log("Rate : " + bo.rate);
   }
 
   void Update() {
@@ -36,6 +37,7 @@ public class cannon : MonoBehaviour
       Rigidbody temp_rigidbody = temp_barrel.GetComponent<Rigidbody>();
       temp_rigidbody.AddForce(transform.forward * force);
       Destroy(temp_barrel, time);
-    }
+    } else
+      Debug.Log("Not firing !");
   }
 }
