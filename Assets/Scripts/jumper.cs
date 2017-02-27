@@ -13,9 +13,6 @@ public class jumper : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		MovieTexture movie = (MovieTexture)GetComponent<Renderer> ().material.mainTexture;
-		movie.loop = true;
-		movie.Play();
 		levelObject = GameObject.FindGameObjectWithTag("Level");
 		level = levelObject.GetComponent<gameLevel>();
 		BPM = level.BPM;
