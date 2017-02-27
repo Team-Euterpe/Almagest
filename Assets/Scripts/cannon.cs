@@ -6,22 +6,26 @@ public class cannon : MonoBehaviour {
 
 	public GameObject barrel;
 	public GameObject projectile;
-	public GameObject player;
+	private GameObject player;
 	private AudioSource fx;
 	public float time = 0f;
 	public float force = 0f;
-	public float BPM = 0f;
+	private float BPM = 0f;
 	public float volume_ratio = 0;
 	private float rate;
 
 	void Start () 
 	{
-		rate = 60 / BPM;
 		fx = GetComponent<AudioSource>();
-		InvokeRepeating ("Fire", 0f, rate);
+    GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+    gameLevel level = levelObject.GetComponent<gameLevel>();
+    BPM = level.BPM;
+    rate = 60 / BPM;
+    InvokeRepeating ("Fire", 0f, rate);
 	}
 	void Update ()
-	{
+  {
+    player = GameObject.FindGameObjectWithTag("Player");
 		float vol = Vector3.Distance (player.transform.position, transform.position) / volume_ratio;
 		if (vol > 1.0)
 			fx.volume = 0;
