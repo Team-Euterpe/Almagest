@@ -9,7 +9,7 @@ public class cannon : MonoBehaviour {
 	private GameObject player;
 	private AudioSource fx;
 	public float time = 0f;
-  public float divisor = 1f;
+  	public float divisor = 1f;
 	public float force = 0f;
 	private float BPM = 0f;
 	public float volume_ratio = 0f;

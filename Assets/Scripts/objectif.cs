@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class objectif : MonoBehaviour {
 
-    void OnTriggerEnter(Collider other)
+	public Text winText;
+
+	void Start()
+	{
+		winText.text = "";
+	}
+
+	void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("You win");
+			winText.text = "You win";
             other.gameObject.SetActive(false);
         }
     }
