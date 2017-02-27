@@ -13,5 +13,6 @@ public class gameOver : MonoBehaviour {
 		GameObject.FindGameObjectWithTag("Level").GetComponent<gameLevel>().music.Stop();
 		loseText.text = "You died";
 		Instantiate (loseParticle, this.transform.position, loseParticle.transform.rotation);
+		this.gameObject.SetActive (false);
 	}
 }

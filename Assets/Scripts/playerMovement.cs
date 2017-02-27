@@ -15,5 +15,8 @@ public class playerMovement : MonoBehaviour
     if (Input.GetKeyDown("down"))
       p.z -= 1;
     transform.position = p;
+
+		if (p.y < -20)
+			this.GetComponent<gameOver> ().GameOver ();
   }
 }
