@@ -15,9 +15,9 @@ public class cannon : MonoBehaviour
   private beatObject bo;
 
   void Start() {
-    bo = GetComponent<beatObject>();
     fx = GetComponent<AudioSource>();
     player = GameObject.FindGameObjectWithTag("Player");
+    bo = GetComponent<beatObject>();
     InvokeRepeating("Fire", 0f, bo.rate);
   }
 

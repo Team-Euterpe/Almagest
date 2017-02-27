@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameLevel : MonoBehaviour {
-	public AudioSource music{ get; private set; }
-  	public float BPM;
-  	public float Beat { get; private set; }
-	// Use this for initialization 
-	void Start () {
-    this.music = GetComponent<AudioSource>();
+public class gameLevel : MonoBehaviour
+{
+
+  public float BPM;
+
+  public AudioSource music{ get; private set; }
+
+  public float Beat { get; private set; }
+
+  void Start() {
+    music = GetComponent<AudioSource>();
     music.Play();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+  }
+
+  void Update() {
     Beat = (60 / BPM) * Time.time;
-	}
+  }
 }
