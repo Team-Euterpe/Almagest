@@ -11,4 +11,12 @@ public class movie : MonoBehaviour {
 		movie.loop = true;
 		movie.Play();
 	}
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.gameObject.CompareTag ("Player")) 
+		{
+			Rigidbody rigid = other.gameObject.GetComponent<Rigidbody> ();
+			rigid.AddForce (transform.up * 300);
+		}
+	}
 }

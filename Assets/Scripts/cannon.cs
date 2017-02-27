@@ -18,15 +18,16 @@ public class cannon : MonoBehaviour {
 	void Start () 
 	{
 		fx = GetComponent<AudioSource>();
-    GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
-    gameLevel level = levelObject.GetComponent<gameLevel>();
-    BPM = level.BPM;
-    rate = (60 / BPM) * divisor;
-    InvokeRepeating ("Fire", 0f, rate);
+		player = GameObject.FindGameObjectWithTag("Player");
+	    GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+	    gameLevel level = levelObject.GetComponent<gameLevel>();
+	    BPM = level.BPM;
+	    rate = (60 / BPM) * divisor;
+	    InvokeRepeating ("Fire", 0f, rate);
 	}
 	void Update ()
-  {
-    player = GameObject.FindGameObjectWithTag("Player");
+  	{
+   		
 		float vol = Vector3.Distance (player.transform.position, transform.position) / volume_ratio;
 		if (vol > 1.0)
 			fx.volume = 0;
