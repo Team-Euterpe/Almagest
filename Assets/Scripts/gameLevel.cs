@@ -19,4 +19,14 @@ public class gameLevel : MonoBehaviour
   void Update() {
     Beat = (60 / BPM) * Time.time;
   }
+  public void PitchOut(float timeOut) {
+    StartCoroutine(PitchOutCoroutine(timeOut));
+  }
+  IEnumerator PitchOutCoroutine(float timeOut) {
+    while (music.pitch > 0) {
+      music.pitch -= 1f/20f;
+      yield return new WaitForSeconds(timeOut / 20);
+    }
+    music.Stop();
+  }
 }
