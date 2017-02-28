@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+  private GameObject[] walls;
+
+  void Start() {
+    walls = GameObject.FindGameObjectsWithTag("Wall");
+  }
+
   void Update() {
     var p = transform.position;
     if (Input.GetKeyDown("left"))
