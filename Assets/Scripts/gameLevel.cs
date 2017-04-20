@@ -17,7 +17,7 @@ public class gameLevel : MonoBehaviour
   }
 
   void Update() {
-    Beat = (60 / BPM) * Time.timeSinceLevelLoad;
+	Beat = Time.timeSinceLevelLoad / (60 / BPM);
   }
   public void PitchOut(float timeOut) {
     StartCoroutine(PitchOutCoroutine(timeOut));
