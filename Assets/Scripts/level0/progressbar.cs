@@ -19,7 +19,6 @@ public class progressbar : MonoBehaviour {
 	void Update () 
 	{
 		float ratio = audiosource.time / songLen;
-		print (ratio);
 		foregroundImage.fillAmount = audiosource.time / songLen;
 	}
 }
