@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-  private GameObject[] walls;
 
   void Start() {
-    walls = GameObject.FindGameObjectsWithTag("Wall");
+    
   }
 
   void Update() {
@@ -22,7 +21,8 @@ public class playerMovement : MonoBehaviour
       p.z -= 1;
     transform.position = p;
 
-		if (p.y < -20)
-			this.GetComponent<gameOver> ().GameOver ();
+    if (p.y < -20)
+      this.GetComponent<gameOver>().GameOver();
   }
+    
 }

@@ -2,37 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour {
+public class player : MonoBehaviour
+{
 
-	float speed = 2.0f;
-	Vector3 pos;
-	Transform tr;
-	Rigidbody rb;
+  float speed = 2.0f;
+  Vector2 pos;
+  Transform tr;
+  Rigidbody rb;
 
-	// Use this for initialization
-	void Start () {
-		pos = transform.position;
-		tr = transform;
-	}
+  // Use this for initialization
+  void Start() {
+    tr = transform;
+    pos = new Vector2(tr.position.x, tr.position.z);
+  }
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKey("right") && tr.position == pos)
-		{
-			pos += Vector3.right;
-		}
-		else if (Input.GetKey("left") && tr.position == pos)
-		{
-			pos += Vector3.left;
-		}
-		else if (Input.GetKey("up") && tr.position == pos)
-		{
-			pos += Vector3.forward;
-		}
-		else if (Input.GetKey("down") && tr.position == pos)
-		{
-			pos += Vector3.back;
-		}
-		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
-	}
+  // Update is called once per frame
+  void Update() {
+    if (tr.position.x == pos.x && tr.position.z == pos.y) {
+      if (Input.GetKey("right")) {
+        pos += Vector2.right;
+      } else if (Input.GetKey("left")) {
+        pos += Vector2.left;
+      } else if (Input.GetKey("up")) {
+        pos += Vector2.up;
+      } else if (Input.GetKey("down")) {
+        pos += Vector2.down;
+      }
+    }
+    transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
+  }
 }
