@@ -30,5 +30,7 @@ public class player : MonoBehaviour
       }
     }
     transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
+	if (transform.position.y < -20)
+		this.GetComponent<gameOver>().GameOver();
   }
 }
