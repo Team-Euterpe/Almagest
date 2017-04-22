@@ -8,13 +8,13 @@ public class gameOver : MonoBehaviour {
 	public GameObject loseParticle;
 	public Text loseText;
 
-  private const float timeToDie = 3.14f;
+  const float timeToDie = 6.28f;
 
 	public void GameOver()
 	{
     GameObject.FindGameObjectWithTag("Level").GetComponent<gameLevel>().PitchOut(timeToDie);
 		loseText.text = "You died";
-		Instantiate (loseParticle, this.transform.position, loseParticle.transform.rotation);
-		this.gameObject.SetActive (false);
+		Instantiate (loseParticle, transform.position, loseParticle.transform.rotation);
+		gameObject.SetActive (false);
 	}
 }
