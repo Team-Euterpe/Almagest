@@ -6,10 +6,10 @@ public class player : MonoBehaviour
 {
 
   public float speed = 2.0f;
-  private Vector2 pos;
+  public Vector2 pos {private get; set; }
   private Transform tr;
   private Rigidbody rb;
-  private Vector3 previousact;
+  //private Vector3 previousact;
   public List<string> cannotmove;
   private GameObject model;
 
@@ -28,19 +28,19 @@ public class player : MonoBehaviour
         pos += Vector2.right;
       } else if (!cannotmove.Contains("colliderLeft") && Input.GetKey("left")) {
         pos += Vector2.left;
-      } else if (!cannotmove.Contains("colliderBack") && Input.GetKey("up")) {
+      } else if (!cannotmove.Contains("colliderFront") && Input.GetKey("up")) {
         pos += Vector2.up;
-      } else if (!cannotmove.Contains("colliderFront") && Input.GetKey("down")) {
+      } else if (!cannotmove.Contains("colliderBack") && Input.GetKey("down")) {
         pos += Vector2.down;
       }
-      previousact = transform.position;
+      //previousact = transform.position;
     }
     transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
     if (transform.position.y < -20)
       this.GetComponent<gameOver>().GameOver();
   }
 
-  void OnCollisionEnter(Collision other) {
+  //void OnCollisionEnter(Collision other) {
     /*
 		GetComponent<Rigidbody>().MovePosition(transform.position);
 		if (other.gameObject.CompareTag ("Wall")) {
@@ -48,5 +48,5 @@ public class player : MonoBehaviour
 			pos = new Vector2 (previousact.x, previousact.z); 
 		}
     */  
-  }
+  //}
 }
