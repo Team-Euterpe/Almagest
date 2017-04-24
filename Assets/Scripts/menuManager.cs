@@ -7,7 +7,7 @@ public class menuManager : MonoBehaviour
 {
 	public void NewGame()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("crashtest");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("level0");
 	}
 	public void ExitGame()
 	{
