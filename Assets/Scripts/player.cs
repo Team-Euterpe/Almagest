@@ -18,7 +18,7 @@ public class player : MonoBehaviour
     model = GameObject.FindGameObjectWithTag("Player");
     cannotmove = new List<string>();
     tr = transform;
-    pos = new Vector2(tr.position.x, tr.position.z);
+    resetPos();
   }
 
   // Update is called once per frame
@@ -38,6 +38,9 @@ public class player : MonoBehaviour
     transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
     if (transform.position.y < -20)
       this.GetComponent<gameOver>().GameOver();
+  }
+  public void resetPos() {
+    pos = new Vector2(tr.position.x, tr.position.z);
   }
 
   //void OnCollisionEnter(Collision other) {

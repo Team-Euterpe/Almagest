@@ -8,15 +8,15 @@ public class gameLevel : MonoBehaviour
   public float BPM;
 
   public AudioSource music{ get; private set; }
-  public Camera playerCamera, deathCamera;
+  public GameObject playerCamera, deathCamera;
 
   public float Beat { get; private set; }
 
   void Start() {
     music = GetComponent<AudioSource>();
     music.Play();
-    playerCamera.enabled = true;
-    deathCamera.enabled = false;
+    playerCamera.SetActive(true);
+    deathCamera.SetActive(false);
   }
 
   void Update() {
@@ -33,7 +33,7 @@ public class gameLevel : MonoBehaviour
     music.Stop();
   }
   public void DeathCamera() {
-    playerCamera.enabled = false;
-    deathCamera.enabled = true;
+    playerCamera.SetActive(false);
+    deathCamera.SetActive(true);
   }
 }
