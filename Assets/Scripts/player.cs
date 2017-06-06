@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class player : MonoBehaviour
   private Rigidbody rb;
   //private Vector3 previousact;
   public List<string> cannotmove;
-  private GameObject model;
+	private GameObject model;
 
   // Use this for initialization
   void Start() {
@@ -23,7 +24,7 @@ public class player : MonoBehaviour
 
   // Update is called once per frame
   void Update() {
-    if (tr.position.x == pos.x && tr.position.z == pos.y) {
+	if (tr.position.x == pos.x && tr.position.z == pos.y) {
       if (!cannotmove.Contains("colliderRight") && Input.GetKey("right")) {
         pos += Vector2.right;
       } else if (!cannotmove.Contains("colliderLeft") && Input.GetKey("left")) {
@@ -35,7 +36,7 @@ public class player : MonoBehaviour
       }
       //previousact = transform.position;
     }
-    transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
+		transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
     if (transform.position.y < -20)
       this.GetComponent<gameOver>().GameOver();
   }
