@@ -13,9 +13,9 @@ public class platformMove : MonoBehaviour {
 
 	void Update () {
 		if (onPlatform && !Input.GetKey("right") && !Input.GetKey("left") && !Input.GetKey("up") && !Input.GetKey("down")) {
-				player.transform.position = this.GetComponent<Transform> ().position;
+			player.transform.position = this.GetComponent<Transform> ().position;
+			player.GetComponent<player> ().resetPos ();
 		}
-		player.GetComponent<player> ().resetPos ();
 	}
 
 	void OnTriggerEnter(Collider c)

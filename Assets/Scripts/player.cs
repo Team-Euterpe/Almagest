@@ -26,13 +26,13 @@ public class player : MonoBehaviour
   void Update() {
 	if (tr.position.x == pos.x && tr.position.z == pos.y) {
       if (!cannotmove.Contains("colliderRight") && Input.GetKey("right")) {
-        pos += Vector2.right;
+		pos = new Vector2 ((float)Math.Round(pos.x + 1), pos.y);
       } else if (!cannotmove.Contains("colliderLeft") && Input.GetKey("left")) {
-        pos += Vector2.left;
+		pos = new Vector2 ((float)Math.Round(pos.x - 1), pos.y);
       } else if (!cannotmove.Contains("colliderFront") && Input.GetKey("up")) {
-        pos += Vector2.up;
+		pos = new Vector2 (pos.x, (float)Math.Round(pos.y + 1));
       } else if (!cannotmove.Contains("colliderBack") && Input.GetKey("down")) {
-        pos += Vector2.down;
+		pos = new Vector2 (pos.x, (float)Math.Round(pos.y - 1));
       }
       //previousact = transform.position;
     }
