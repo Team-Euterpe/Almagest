@@ -10,12 +10,17 @@ public class movingplatform : MonoBehaviour {
 	private Vector3 origPos;
 	private Vector3 destPos;
 	private bool goingBack;
+	public float speed;
+	private float speedcalc;
+	private GameObject level;
 
 	// Use this for initialization
 	void Start () {
 		origPos = transform.position;
 		destPos = new Vector3 (destX, destY, destZ);
 		goingBack = false;
+		level = GameObject.FindGameObjectWithTag ("Level");
+		speedcalc = (Mathf.Abs (Vector3.Distance (origPos, destPos)) / (60 / level.GetComponent<gameLevel> ().BPM)) / speed;
 	}
 	
 	// Update is called once per frame
@@ -25,8 +30,8 @@ public class movingplatform : MonoBehaviour {
 		if (transform.position == origPos)
 			goingBack = false;
 		if (goingBack)
-			transform.position = Vector3.MoveTowards (transform.position, origPos, Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, origPos, Time.deltaTime * speedcalc);
 		else
-			transform.position = Vector3.MoveTowards (transform.position, destPos, Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, destPos, Time.deltaTime * speedcalc);
 	}
 }
