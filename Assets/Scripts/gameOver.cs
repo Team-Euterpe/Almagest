@@ -19,6 +19,7 @@ public class gameOver : MonoBehaviour {
     level.GetComponent<gameLevel>().DeathCamera();
 		loseText.text = "You died";
 		Instantiate (loseParticle, transform.position, loseParticle.transform.rotation);
+		transform.position = new Vector3 (-573, -765, -876);
 		gameObject.SetActive (false);
 	}
 }
