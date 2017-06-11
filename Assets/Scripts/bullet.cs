@@ -6,9 +6,10 @@ public class bullet : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.gameObject.CompareTag ("Player")) 
-		{
-			other.gameObject.GetComponent<gameOver>().GameOver();
+		if (other.gameObject.CompareTag ("Player")) {
+			other.gameObject.GetComponent<gameOver> ().GameOver ();
+		} else if (other.gameObject.CompareTag ("Box")) {
+			Destroy (this.gameObject);
 		}
 	}
 }

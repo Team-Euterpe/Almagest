@@ -23,12 +23,13 @@ public class lazer : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		bo = GetComponent<beatObject>();
 		active = false;
-		but = button.GetComponent<button> ();
 		ray = transform.GetChild (0).gameObject;
 		ray.transform.localPosition = new Vector3(0, 0, range);
 		ray.transform.localScale = new Vector3(ray.transform.localScale.x, range, ray.transform.localScale.z);
 		if (activation != Mode.Button)
 			InvokeRepeating ("Fire", bo.offset, bo.rate);
+		else
+			but = button.GetComponent<button> ();
 	}
 	
 	// Update is called once per frame
