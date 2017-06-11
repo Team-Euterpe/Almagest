@@ -38,9 +38,11 @@ public class lazer : MonoBehaviour {
 		if (bo.active) 
 		{
 			if (!active) {
+				fx.Play ();
 				active = true;
 				ray.SetActive (true);
 			} else {
+				fx.Stop ();
 				active = false;
 				ray.SetActive (false);
 			}
