@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Mode {Periodic, Nonperiodic, Button}
+
 public class lazer : MonoBehaviour {
 
 	private GameObject player;
@@ -11,6 +13,7 @@ public class lazer : MonoBehaviour {
 	private beatObject bo;
 	private bool active;
 	public int range;
+	public Mode activation;
 
 	// Use this for initialization
 	void Start () {
@@ -35,16 +38,29 @@ public class lazer : MonoBehaviour {
 
 	void Fire()
 	{
-		if (bo.active) 
-		{
-			if (!active) {
+		if (bo.active) {
+			if (!active) 
+			{
 				fx.Play ();
 				active = true;
 				ray.SetActive (true);
-			} else {
-				fx.Stop ();
-				active = false;
-				ray.SetActive (false);
+			} 
+			else 
+			{
+				if (activation == Mode.Periodic) 
+				{
+					fx.Stop ();
+					active = false;
+					ray.SetActive (false);
+				}
+			}
+		} else {
+			if (active) {
+				if (activation == Mode.Nonperiodic) {
+					fx.Stop ();
+					active = false;
+					ray.SetActive (false);
+				}
 			}
 		}
 	}
