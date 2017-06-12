@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Chronos;
 
 public class gameLevel : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class gameLevel : MonoBehaviour
   }
 
   void Update() {
-	Beat = Time.timeSinceLevelLoad / (60 / BPM);
+	//Beat = Time.timeSinceLevelLoad / (60 / BPM);
+	Beat = GetComponent<Timeline>().time / (60 / BPM);
+		print (Beat);
   }
   public void PitchOut(float timeOut) {
     StartCoroutine(PitchOutCoroutine(timeOut));

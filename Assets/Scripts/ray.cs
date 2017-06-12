@@ -71,7 +71,6 @@ public class ray : MonoBehaviour {
 		}
 		if (!box) {
 			range = orig_range;
-			print (range);
 			ReziveOut ();
 		}
 	}

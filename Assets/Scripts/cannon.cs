@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Chronos;
 
 public class cannon : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class cannon : MonoBehaviour
     fx = GetComponent<AudioSource>();
     player = GameObject.FindGameObjectWithTag("Player");
     bo = GetComponent<beatObject>();
-	InvokeRepeating("Fire", bo.offset, bo.rate);
+	//StartCoroutine (Fire());
+	InvokeRepeating("Fire2", bo.offset, bo.rate);
   }
 
   void Update() {
@@ -29,13 +31,48 @@ public class cannon : MonoBehaviour
       fx.volume = 1 - vol;
   }
 
-  void Fire() {
-    if (bo.active) {
-      fx.Play();
-      GameObject temp_barrel = Instantiate(projectile, barrel.transform.position, projectile.transform.rotation);
-      Rigidbody temp_rigidbody = temp_barrel.GetComponent<Rigidbody>();
-      temp_rigidbody.AddForce(transform.forward * force);
-      Destroy(temp_barrel, time);
-    }
-  }
+  IEnumerator Fire() {
+		yield return GetComponent<Timeline> ().WaitForSeconds (bo.offset);
+		while (true) {
+			if (bo.active) {
+				fx.Play ();
+				/*
+				GameObject temp_barrel = Instantiate(projectile, barrel.transform.position, projectile.transform.rotation);
+				Rigidbody temp_rigidbody = temp_barrel.GetComponent<Rigidbody> ();
+				temp_rigidbody.GetComponent<Timeline> ().rigidbody.AddForce (transform.forward * force);
+				Destroy (temp_barrel, time);
+				*/
+				GetComponent<Timeline> ().Do (true, delegate() {
+					GameObject temp_barrel = Instantiate (projectile, barrel.transform.position, projectile.transform.rotation);
+					Rigidbody temp_rigidbody = temp_barrel.GetComponent<Rigidbody> ();
+					temp_rigidbody.GetComponent<Timeline> ().rigidbody.AddForce (transform.forward * force);
+					StartCoroutine(Wait(time));
+					//Destroy (temp_barrel, time);
+					temp_barrel.SetActive(false);
+					return temp_barrel;
+				}, 
+					delegate(GameObject temp_barrel) {
+						temp_barrel.SetActive(true);
+						Destroy (temp_barrel);
+					}
+				);
+			}
+			yield return GetComponent<Timeline> ().WaitForSeconds (bo.rate);
+		}
+	}
+
+	IEnumerator Wait(float time){
+		yield return GetComponent<Timeline> ().WaitForSeconds (time);
+	}
+
+	void Fire2()
+	{
+		if (bo.active) {
+			fx.Play ();
+			GameObject temp_barrel = Instantiate (projectile, barrel.transform.position, projectile.transform.rotation);
+			Rigidbody temp_rigidbody = temp_barrel.GetComponent<Rigidbody> ();
+			temp_rigidbody.GetComponent<Timeline> ().rigidbody.AddForce (transform.forward * force);
+			Destroy (temp_barrel, time);
+		}
+	}
 }
