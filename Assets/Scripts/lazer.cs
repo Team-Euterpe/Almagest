@@ -26,6 +26,7 @@ public class lazer : MonoBehaviour {
 		ray = transform.GetChild (0).gameObject;
 		ray.transform.localPosition = new Vector3(0, 0, range);
 		ray.transform.localScale = new Vector3(ray.transform.localScale.x, range, ray.transform.localScale.z);
+		ray.SetActive (false);
 		if (activation != Mode.Button)
 			InvokeRepeating ("Fire", bo.offset, bo.rate);
 		else
