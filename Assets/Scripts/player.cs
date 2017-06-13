@@ -28,13 +28,13 @@ public class player : MonoBehaviour
   // Update is called once per frame
   void Update() {
     if (tr.position.x == pos.x && tr.position.z == pos.y) {
-      if (!cannotmove.Contains("colliderRight") && Input.GetKey("right")) {
+      if (!cannotmove.Contains("colliderRight") && Input.GetAxisRaw("Horizontal") > 0) {
         pos = new Vector2((float)Math.Round(pos.x + 1), pos.y);
-      } else if (!cannotmove.Contains("colliderLeft") && Input.GetKey("left")) {
+      } else if (!cannotmove.Contains("colliderLeft") && Input.GetAxisRaw("Horizontal") < 0) {
         pos = new Vector2((float)Math.Round(pos.x - 1), pos.y);
-      } else if (!cannotmove.Contains("colliderFront") && Input.GetKey("up")) {
+      } else if (!cannotmove.Contains("colliderFront") && Input.GetAxisRaw("Vertical") > 0) {
         pos = new Vector2(pos.x, (float)Math.Round(pos.y + 1));
-      } else if (!cannotmove.Contains("colliderBack") && Input.GetKey("down")) {
+      } else if (!cannotmove.Contains("colliderBack") && Input.GetAxisRaw("Vertical") < 0) {
         pos = new Vector2(pos.x, (float)Math.Round(pos.y - 1));
       }
       //previousact = transform.position;
@@ -43,7 +43,7 @@ public class player : MonoBehaviour
       Timekeeper.instance.Clock("Root").localTimeScale = -1;
       this.gameObject.GetComponent<AudioSource>().pitch = -1;
     }
-    if (Input.GetKeyUp(KeyCode.Space)) {
+	if (Input.GetButtonUp("Rewind")) {
       Timekeeper.instance.Clock("Root").localTimeScale = 1;
       this.gameObject.GetComponent<AudioSource>().pitch = 1;
       foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {

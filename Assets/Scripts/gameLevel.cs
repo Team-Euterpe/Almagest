@@ -27,6 +27,8 @@ public class gameLevel : MonoBehaviour
     print(Beat);
     if (Input.GetButton("Fast retry"))
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	if (Input.GetButton("Main menu"))
+	  SceneManager.LoadScene("mainmenu");
   }
 
   public void PitchOut(float timeOut) {
