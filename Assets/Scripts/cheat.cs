@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using Chronos;
 
 public class cheat : MonoBehaviour
 {
@@ -8,19 +6,6 @@ public class cheat : MonoBehaviour
 
   // Update is called once per frame
   void Update() {
-    if (Input.GetButton("Fast retry"))
-      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    if (Input.GetButton("Rewind")) {
-      Timekeeper.instance.Clock("Root").localTimeScale = -1;
-      this.gameObject.GetComponent<AudioSource>().pitch = -1;
-    }
-    if (Input.GetKeyUp(KeyCode.Space)) {
-      Timekeeper.instance.Clock("Root").localTimeScale = 1;
-      this.gameObject.GetComponent<AudioSource>().pitch = 1;
-      foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-        player.GetComponent<player>().resetPos();
-      }
-    }
     if (Input.GetKeyDown(KeyCode.Keypad1)) {
       player.transform.position = new Vector3(0, 1, 7);
       player.GetComponent<player>().resetPos();

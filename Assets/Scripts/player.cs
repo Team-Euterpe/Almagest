@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Chronos;
 
 public class player : MonoBehaviour
 {
@@ -37,6 +39,19 @@ public class player : MonoBehaviour
         pos = new Vector2(pos.x, (float)Math.Round(pos.y - 1));
       }
       //previousact = transform.position;
+    }
+    if (Input.GetButton("Fast retry"))
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    if (Input.GetButton("Rewind")) {
+      Timekeeper.instance.Clock("Root").localTimeScale = -1;
+      this.gameObject.GetComponent<AudioSource>().pitch = -1;
+    }
+    if (Input.GetKeyUp(KeyCode.Space)) {
+      Timekeeper.instance.Clock("Root").localTimeScale = 1;
+      this.gameObject.GetComponent<AudioSource>().pitch = 1;
+      foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+        player.GetComponent<player>().resetPos();
+      }
     }
     transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
     if (transform.position.y < -20)
