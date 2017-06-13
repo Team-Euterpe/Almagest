@@ -4,7 +4,8 @@ using Chronos;
 
 public class cheat : MonoBehaviour
 {
-	
+	public GameObject player;
+
   // Update is called once per frame
   void Update() {
     if (Input.GetKeyDown(KeyCode.R))
@@ -20,5 +21,9 @@ public class cheat : MonoBehaviour
         player.GetComponent<player>().resetPos();
       }
     }
+		if (Input.GetKeyDown (KeyCode.Keypad5)) {
+			player.transform.position = new Vector3 (-7, 1, 103);
+			player.GetComponent<player> ().resetPos ();
+		}
   }
 }
