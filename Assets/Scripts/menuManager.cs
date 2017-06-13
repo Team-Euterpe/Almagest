@@ -51,5 +51,6 @@ public class menuManager : MonoBehaviour
 		button1.GetComponentInChildren<Text>().text = "Start Game";
 		button2.GetComponentInChildren<Text>().text = "Exit Game";
 		back.SetActive(false);
+		button2.GetComponent<Button> ().interactable = true;
 	}
 }
