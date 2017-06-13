@@ -29,6 +29,19 @@ public class gameLevel : MonoBehaviour
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	if (Input.GetButton("Main menu"))
 	  SceneManager.LoadScene("mainmenu");
+	if (GameObject.FindGameObjectsWithTag ("Player").Length != 0) {
+		if (Input.GetButton ("Rewind")) {
+			Timekeeper.instance.Clock ("Root").localTimeScale = -1;
+			this.gameObject.GetComponent<AudioSource> ().pitch = -1;
+		}
+		if (Input.GetButtonUp ("Rewind")) {
+			Timekeeper.instance.Clock ("Root").localTimeScale = 1;
+			this.gameObject.GetComponent<AudioSource> ().pitch = 1;
+			foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+				player.GetComponent<player> ().resetPos ();
+				}
+		}
+	}
   }
 
   public void PitchOut(float timeOut) {

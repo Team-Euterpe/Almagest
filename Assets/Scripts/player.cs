@@ -39,6 +39,7 @@ public class player : MonoBehaviour
       }
       //previousact = transform.position;
     }
+		/*
     if (Input.GetButton("Rewind")) {
       Timekeeper.instance.Clock("Root").localTimeScale = -1;
       this.gameObject.GetComponent<AudioSource>().pitch = -1;
@@ -47,9 +48,9 @@ public class player : MonoBehaviour
       Timekeeper.instance.Clock("Root").localTimeScale = 1;
       this.gameObject.GetComponent<AudioSource>().pitch = 1;
       foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-        player.GetComponent<player>().resetPos();
-      }
+		player.GetComponent<player>().resetPos();
     }
+    */
     transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos.x, transform.position.y, pos.y), Time.deltaTime * speed);
     if (transform.position.y < -20)
       this.GetComponent<gameOver>().GameOver();
