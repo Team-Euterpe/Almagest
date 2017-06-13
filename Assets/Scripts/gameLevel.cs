@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Chronos;
 
@@ -24,7 +24,9 @@ public class gameLevel : MonoBehaviour
   void Update() {
     //Beat = Time.timeSinceLevelLoad / (60 / BPM);
     Beat = GetComponent<Timeline>().time / (60 / BPM);
-	print (Beat);
+    print(Beat);
+    if (Input.GetButton("Fast retry"))
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 
   public void PitchOut(float timeOut) {

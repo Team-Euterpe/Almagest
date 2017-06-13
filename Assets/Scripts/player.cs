@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Chronos;
 
 public class player : MonoBehaviour
@@ -40,8 +39,6 @@ public class player : MonoBehaviour
       }
       //previousact = transform.position;
     }
-    if (Input.GetButton("Fast retry"))
-      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     if (Input.GetButton("Rewind")) {
       Timekeeper.instance.Clock("Root").localTimeScale = -1;
       this.gameObject.GetComponent<AudioSource>().pitch = -1;
