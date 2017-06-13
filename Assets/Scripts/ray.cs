@@ -25,15 +25,13 @@ public class ray : MonoBehaviour {
 		range = GetComponentInParent<lazer> ().range;
 		isbox = false;
 	}
+	*/
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.gameObject.CompareTag ("Player"))
 			other.gameObject.GetComponent<gameOver> ().GameOver ();
-		else if (other.gameObject.CompareTag ("Box")) {
-			box = other.gameObject;
-			isbox = true;
-		}
 	}
+	/*
 	void Update()
 	{
 		if (isbox) {
@@ -64,8 +62,8 @@ public class ray : MonoBehaviour {
 				box = true;
 				range = Mathf.Abs (Vector3.Distance (hit.transform.position, transform.parent.position));
 				ReziveOut ();
-			} else if (hit.transform.gameObject.CompareTag ("Player") && !box)
-				hit.transform.gameObject.GetComponent<gameOver> ().GameOver ();
+			} /*else if (hit.transform.gameObject.CompareTag ("Player") && !box)
+				hit.transform.gameObject.GetComponent<gameOver> ().GameOver ();*/
 			if (box)
 				break;
 		}

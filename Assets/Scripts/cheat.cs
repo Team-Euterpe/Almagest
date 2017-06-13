@@ -45,5 +45,13 @@ public class cheat : MonoBehaviour
       player.transform.position = new Vector3(-17, 1, 114);
       player.GetComponent<player>().resetPos();
     }
+	if (Input.GetKeyDown(KeyCode.Keypad7)) {
+	  player.transform.position = new Vector3(-17, 1, 122);
+	  player.GetComponent<player>().resetPos();
+	}
+	if (Input.GetKeyDown(KeyCode.Keypad8)) {
+	  player.transform.position = new Vector3(-17, 7, 137);
+	  player.GetComponent<player>().resetPos();
+	}
   }
 }
