@@ -9,6 +9,7 @@ public class gameLevel : MonoBehaviour
   public float BPM;
 
   public AudioSource music{ get; private set; }
+
   public GameObject playerCamera, deathCamera;
 
   public float Beat { get; private set; }
@@ -21,20 +22,22 @@ public class gameLevel : MonoBehaviour
   }
 
   void Update() {
-	//Beat = Time.timeSinceLevelLoad / (60 / BPM);
-	Beat = GetComponent<Timeline>().time / (60 / BPM);
-		print (Beat);
+    //Beat = Time.timeSinceLevelLoad / (60 / BPM);
+    Beat = GetComponent<Timeline>().time / (60 / BPM);
   }
+
   public void PitchOut(float timeOut) {
     StartCoroutine(PitchOutCoroutine(timeOut));
   }
+
   IEnumerator PitchOutCoroutine(float timeOut) {
     while (music.pitch > 0) {
-      music.pitch -= 1f/20f;
+      music.pitch -= 1f / 20f;
       yield return new WaitForSeconds(timeOut / 20);
     }
     music.Stop();
   }
+
   public void DeathCamera() {
     playerCamera.SetActive(false);
     deathCamera.SetActive(true);
